@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pin-display" class="form-control" type="text">
+                    <button id="generate-btn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="calc-display" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" onclick="appendtoDisplay('7')">7</div>
+                              <div class="button" onclick="appendtoDisplay('8')">8</div>
+                              <div class="button" onclick="appendtoDisplay('9')">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="appendtoDisplay('4')">4</div>
+                              <div class="button" onclick="appendtoDisplay('5')">5</div>
+                              <div class="button" onclick="appendtoDisplay('6')">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="appendtoDisplay('1')">1</div>
+                              <div class="button" onclick="appendtoDisplay('2')">2</div>
+                              <div class="button" onclick="appendtoDisplay('3')">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" onclick="deleteLastDigiit()">&lt;</div>
+                                <div class="button" onclick="appendtoDisplay('0')">0</div>
+                                <div class="button" onclick="clearDisplay()">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn" onclick="resultShow()">Submit</button>
+                                <p id="try-left" class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="not-matched" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="matched" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <script>
+        let generateBtn = document.getElementById('generate-btn')
+        let pinDisplay = document.getElementById('pin-display')
+        let calcDisplay = document.getElementById('calc-display')
+        generateBtn.addEventListener('click', function () {
+            let pinNumber = Math.floor(1000 + Math.random() * 9000);
+            pinDisplay.value = pinNumber
+        })
+        function appendtoDisplay(num) {
+            calcDisplay.value += num
+        }
+        function clearDisplay() {
+            calcDisplay.value = ''
+        }
+        function deleteLastDigiit() {
+            calcDisplay.value = calcDisplay.value.slice(0, -1);
+        }
+        function resultShow () {
+            let matched = document.getElementById('matched')
+            let notMatched = document.getElementById('not-matched')
+            
+            matched.style.display = 'none';
+            notMatched.style.display = 'none';
+
+            if (calcDisplay.value === pinDisplay.value ) { 
+                matched.style.display = 'block'
+            } else {
+                notMatched.style.display = 'block'
+            }
+        }
+    </script>
+</body>
+</html>
