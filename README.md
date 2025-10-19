@@ -7,7 +7,6 @@ It allows users to **generate a random 4-digit PIN** and then verify it using a 
 
 ## 🌐 Live Demo
 👉 [View Live on GitHub Pages](https://shahriar-hosen.github.io/pin-generator-verifier/)  
-*(Replace `yourusername` with your actual GitHub username once you enable GitHub Pages.)*
 
 ---
 
